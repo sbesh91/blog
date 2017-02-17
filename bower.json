@@ -1,0 +1,25 @@
+{
+  "name": "sbesh-blog",
+  "authors": [
+    "Steven Beshensky <s.beshensky@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "polymer/polymer#^1.3.0",
+    "app-layout": "PolymerLabs/app-layout#^0.0.6",
+    "iron-elements": "PolymerElements/iron-elements#^1.0.7",
+    "paper-elements": "PolymerElements/paper-elements#^1.0.7",
+    "sw-toolbox": "^3.2.1"
+  }
+}

@@ -1,0 +1,156 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="blog-post">
+<template>
+  <style>
+  :host{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 45%;
+    -webkit-flex: 45%;
+        -ms-flex: 45%;
+            flex: 45%;
+    min-width: 220px;
+  }
+  paper-material{
+    background-color: white;
+    border-radius: 2px;
+    margin: 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 100%;
+    -webkit-flex: 100%;
+        -ms-flex: 100%;
+            flex: 100%;
+    -webkit-align-self: center;
+        -ms-flex-item-align: center;
+            align-self: center;
+    height:150px;
+  }
+  paper-material > .post{
+    padding:10px;
+    min-height: 70px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .postImage{
+    height:150px;
+    width: 150px;
+    min-width: 150px;
+  }
+  .title{
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  @media screen and (max-width: 920px) {
+    paper-material{
+      -webkit-flex-wrap: wrap;-ms-flex-wrap: wrap;flex-wrap: wrap;
+      height:auto;
+    }
+    paper-material .postImage, paper-material iron-image{
+      width: 100% !important;
+    }
+
+  }
+  @media screen and (min-width:1200px) {
+    paper-material,:host{
+      -webkit-box-flex:40%;
+      -webkit-flex:40%;
+          -ms-flex:40%;
+              flex:40%
+    }
+  }
+  </style>
+  <paper-material on-tap="_select" class="grid-item" elevation="0">
+    <div class="postImage" id="smallHeader">
+      <iron-image style$="width:150px; height:150px; background-color: {{post.primaryColor}};"
+      src="{{post.image}}" preload fade sizing="cover"></iron-image>
+    </div>
+    <div class="post">
+      <div class="title">
+        {{post.title}}
+      </div>
+      <p style="font-size:13px;">
+        {{post.desc}}
+      </p>
+      <div style="font-size:13px;">
+        {{post.date}}
+      </div>
+    </div>
+  </paper-material>
+</template>
+<script>
+  (function(){
+    Polymer({
+      is:'blog-post',
+      behaviors: [
+        Polymer.NeonAnimationRunnerBehavior,
+        Polymer.NeonAnimatableBehavior
+      ],
+      properties:{
+        post: Object,
+        target: {
+          type: Object,
+          notify: true
+        },
+        url:{
+          type: String,
+          notify: true
+        },
+        animationConfig: {
+          value: function() {
+            return {
+              'entry': [{
+                name:"fade-in-animation",
+                node:this,
+                timing:{
+                  duration:400
+                }
+              }],
+              'exit': [{
+                name: 'fade-out-animation',
+                node: this,
+                timing:{
+                  duration:400
+                }
+              }]
+            }
+          }
+        },
+      },
+      listeners: {
+        'neon-animation-finish': '_onNeonAnimationFinish'
+      },
+      _select:function() {
+        target = this.$.smallHeader;
+        this.url = this.post.url;
+        window.location.hash = "#/" + this.post.url;
+      },
+      _onNeonAnimationFinish: function() {
+        console.log("end animate");
+      },
+      show: function() {
+        this.playAnimation('entry');
+      },
+      hide: function() {
+        this.playAnimation('exit');
+      },
+      ready: function() {
+
+      }
+    });
+  })();
+</script>
+</dom-module>

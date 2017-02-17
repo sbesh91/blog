@@ -1,0 +1,58 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="blog-view">
+<template>
+  <style>
+  </style>
+  <content></content>
+</template>
+<script>
+  (function(){
+    Polymer({
+      is:'blog-view',
+      behaviors: [
+        Polymer.NeonAnimationRunnerBehavior,
+        Polymer.NeonAnimatableBehavior
+      ],
+      properties:{
+        post: Object,
+        animationConfig: {
+          value: function() {
+            return {
+              'entry': [{
+                name:"fade-in-animation",
+                node:this,
+                timing:{
+                  duration:400
+                }
+              }],
+              'exit': [{
+                name: 'fade-out-animation',
+                node: this,
+                timing:{
+                  duration:400
+                }
+              }]
+            }
+          }
+        },
+      },
+      listeners: {
+        'neon-animation-finish': '_onNeonAnimationFinish'
+      },
+      _onNeonAnimationFinish: function() {
+        console.log("end animate");
+      },
+      show: function() {
+        this.playAnimation('entry');
+      },
+      hide: function() {
+        this.playAnimation('exit');
+      },
+      ready: function() {
+        
+      }
+    });
+  })();
+</script>
+</dom-module>

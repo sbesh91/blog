@@ -1,0 +1,8 @@
+{
+  "name": "Steve's Site",
+  "short_name": "sbesh.com",
+  "start_url": "/",
+  "background_color": "#1E88E5",
+  "display": "standalone",
+  "theme_color": "#404040"
+}

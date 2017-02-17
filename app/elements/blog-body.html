@@ -1,0 +1,94 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="blog-body">
+<template>
+  <style>
+    :host{
+      display: block;
+      padding:40px;
+      max-width: 1024px;
+      margin: auto;
+    }
+    #container{
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      min-height: calc(100vh - 185px);
+    }
+    #container > *{
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      position: relative;
+      -webkit-align-content: flex-start;
+      -ms-flex-line-pack: start;
+              align-content: flex-start;
+    }
+    neon-animated-pages > .neon-animating{
+      position: absolute !important;
+    }
+    .title{
+      font-size: 16px;
+      font-weight: bold;
+    }
+    @media screen and (max-width:880px) {
+      #container{
+        min-height: calc(100vh - 145px);
+      }
+      :host{
+        padding:20px;
+      }
+    }
+    @media screen and (max-width:580px) {
+      #container{
+        min-height: calc(100vh - 65px);
+      }
+      :host{
+        padding:0;
+      }
+    }
+  </style>
+  <!-- to properly animate these pages I'll need to find a way to make the pages absolute again  -->
+  <!-- <template is="dom-if" if="{{_equal(page,'/flex')}}"> -->
+  <!-- use this line to lazy load as the site gets bigger -->
+  <neon-animated-pages id="container" class="flex" selected="{{page}}" attr-for-selected="name">
+    <home-page name="" page="{{page}}" posts="{{posts}}">
+    </home-page>
+
+    <blog-flex page="{{page}}" post="{{posts.posts.0}}" name="/flex"></blog-flex>
+
+    <blog-frameworks page="{{page}}" post="{{posts.posts.1}}" name="/jsframeworks"></blog-frameworks>
+
+    <blog-polymer page="{{page}}" post="{{posts.posts.2}}" name="/polymer"></blog-polymer>
+
+    <about-me name="/about"></about-me>
+  </neon-animated-pages>
+</template>
+<script>
+  (function(){
+    Polymer({
+      is:'blog-body',
+      behaviors: [],
+      properties:{
+        posts: Object,
+        page: String,
+      },
+      listeners: {
+        'iron-select': '_select'
+      },
+      _equal: function(value1, value2) {
+        return value1 === value2;
+      },
+      _select: function(data) {
+      },
+      ready: function() {
+
+      }
+    });
+  })();
+</script>
+</dom-module>

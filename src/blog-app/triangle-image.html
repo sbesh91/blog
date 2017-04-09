@@ -1,0 +1,58 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="triangle-image">
+    <template>
+        <style include="shared-styles"></style>
+        <style>
+            :host {
+                display: block;                
+            }
+        </style>
+        <canvas id="canvas" height="[[height]]" width="[[width]]"></canvas>
+    </template>
+    <script>
+        class triangle extends Polymer.Element{
+            static get is() { return 'triangle-image'; }
+            static get properties() {
+                return {
+                    height: {
+                        type: Number
+                    },
+                    width:{
+                        type: Number
+                    }
+                };
+            }
+            connectedCallback(){
+                let canvas = this.$.canvas; 
+
+                var ctx = canvas.getContext('2d');
+
+                ctx.beginPath();
+                ctx.moveTo(75, 50);
+                ctx.lineTo(100, 75);
+                ctx.lineTo(100, 25);
+                ctx.fill();
+
+                // the triangle
+                ctx.beginPath();
+                ctx.moveTo(100, 100);
+                ctx.lineTo(100, 300);
+                ctx.lineTo(300, 300);
+                ctx.closePath();
+                
+                // the outline
+                ctx.lineWidth = 10;
+                ctx.strokeStyle = '#666666';
+                ctx.stroke();
+                
+                // the fill color
+                ctx.fillStyle = "#FFCC00";
+                ctx.fill();                    
+            }
+        }
+
+        window.customElements.define(triangle.is, triangle);
+    </script>
+</dom-module>

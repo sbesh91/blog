@@ -1,0 +1,6 @@
+{
+  "name": "blog",
+  "short_name": "blog",
+  "start_url": "/",
+  "display": "standalone"
+}

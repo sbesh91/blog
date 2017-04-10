@@ -1,4 +1,7 @@
+/node_modules
+/npm-debug.log
+/build
 .DS_Store
-node_modules
-build
-bower_components
+/coverage
+/.idea
+yarn.lock

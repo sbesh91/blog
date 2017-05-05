@@ -18,7 +18,7 @@
     "webpack"
   ],
   "license": "MIT",
-  "author": "Jason Miller <jason@developit.ca>",
+  "author": "Steven Beshensky <s.beshensky@gmail.com>",
   "devDependencies": {
     "autoprefixer": "^6.4.0",
     "babel": "^6.5.2",

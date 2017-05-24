@@ -1,7 +1,7 @@
 {
-  "name": "blog",
+  "name": "for-the-web",
   "version": "1.0.0",
-  "description": "",
+  "description": "For The Web",
   "main": "index.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",

@@ -10,7 +10,7 @@ export default class Header extends Component {
 		this.state = {
 			width: width,
 			offsetWidth: width / this.getSize(width),
-			height: 100
+			height: 50
 		};	
 	}
 	componentDidMount(){		
@@ -47,12 +47,12 @@ export default class Header extends Component {
 			let total = Math.floor(this.state.width / (offsetWidth * 2));
 			let isLast = count == total;			
 			let offsetx = offsetWidth * 2 * count;			
-
+			
 			ctx.beginPath();
 			ctx.moveTo(0 + offsetx,0);
 			ctx.lineTo(offsetWidth * 2 + offsetx,0);
 			ctx.lineTo(offsetWidth + offsetx, height);
-			ctx.fillStyle =`hsl(198, 100%, ${isLast ? "80%" : "80%"})`;
+			ctx.fillStyle =`hsl(198, 100%, 80%)`;
 			ctx.strokeStyle = "#212121";
 			ctx.fill();
 
@@ -60,7 +60,7 @@ export default class Header extends Component {
 			ctx.moveTo(0 + offsetx,0);
 			ctx.lineTo(offsetWidth + offsetx, height);
 			ctx.lineTo(0 + offsetx, height * 2);
-			ctx.fillStyle =`hsl(198, 100%, ${isLast ? "50%" : "70%"})`;
+			ctx.fillStyle =`hsl(198, 100%, 70%)`;
 			ctx.strokeStyle = "#212121";
 			ctx.fill();
 
@@ -68,7 +68,7 @@ export default class Header extends Component {
 			ctx.moveTo(0 + offsetx, height * 2);
 			ctx.lineTo(offsetWidth + offsetx, height);
 			ctx.lineTo(offsetWidth * 2 + offsetx, height * 2);
-			ctx.fillStyle =`hsl(198, 100%, ${isLast ? "60%" : "60%"})`;
+			ctx.fillStyle =`hsl(198, 100%, 60%)`;
 			ctx.strokeStyle = "#212121";
 			ctx.fill();		
 
@@ -76,7 +76,7 @@ export default class Header extends Component {
 			ctx.moveTo(offsetWidth + offsetx, height);
 			ctx.lineTo(offsetWidth * 2 + offsetx,0);
 			ctx.lineTo(offsetWidth * 2 + offsetx, height * 2);
-			ctx.fillStyle =`hsl(198, 100%, ${isLast ? "70%" : "50%"})`;
+			ctx.fillStyle =`hsl(198, 100%, 50%)`;
 			ctx.strokeStyle = "#212121";
 			ctx.fill();		
 

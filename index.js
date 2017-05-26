@@ -11,6 +11,6 @@ export default () => (
 		<Header />
 		<Router>
 			<Home path="/" />			
-		</Router>
+		</Router>		
 	</div>
 );

@@ -36,10 +36,10 @@ export default class Fractal extends Component {
 			let tempReal = real * real
 									- imageinary * imageinary
 									+ x;
-			let tempImaginary = 2 * real * imageinary
+			let tempImageinary = 2 * real * imageinary
 									+ y;
 			real = tempReal;
-			imageinary = tempImaginary;
+			imageinary = tempImageinary;
 
 			// Return a number as a percentage
 			if(real * imageinary > 5){

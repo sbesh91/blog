@@ -5,7 +5,7 @@
 }
 
 canvas{
-	position: absolute;
+	position: fixed;
 	height:100vh;
 	bottom: 0;
 	right:0;

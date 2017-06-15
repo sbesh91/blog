@@ -15,18 +15,19 @@ export default class Fractal extends Component {
 		let panY = 0;
 		for(let x=0; x < c.width; x++) {
 			for(let y=0; y < c.height; y++) {
-				let belongsToSet = this.checkBelongsToSet(x/magFactor - panX, y/magFactor - panY);
-				if(belongsToSet == 0) {
-					ctx.fillStyle = 'rgba(0,0,0,0)';
-					ctx.fillRect(x,y, 1,1); // Draw a black pixel
-				} else {
-					ctx.fillStyle = 'hsl(151, 100%, ' + belongsToSet + '%)';
-					ctx.fillRect(x,y, 1,1); // Draw a colorful pixel
-				}
+				this.innerGenerate(x,y,magFactor,panX,panY,ctx);
 			} 
 		}
-
-		console.log("render complete");
+	}
+	innerGenerate(x,y,magFactor,panX,panY,ctx){
+		let belongsToSet = this.checkBelongsToSet(x/magFactor - panX, y/magFactor - panY);
+		if(belongsToSet == 0) {
+			ctx.fillStyle = 'rgba(0,0,0,0)';
+			ctx.fillRect(x,y, 1,1); // Draw a black pixel
+		} else {
+			ctx.fillStyle = 'hsl(151, 100%, ' + belongsToSet + '%)';
+			ctx.fillRect(x,y, 1,1); // Draw a colorful pixel
+		}
 	}
 	checkBelongsToSet(x, y){
 		let real = x;

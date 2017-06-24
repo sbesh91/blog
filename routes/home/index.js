@@ -7,34 +7,63 @@ export default class Home extends Component {
 		this.state = {
 			cards: [
 				{
-					name: "one"					
+					name: "twitter"					
 				},
 				{
-					name: "two"
+					name: "linkdin"
 				},
 				{
-					name: "three"
+					name: "github"
+				},
+				{
+					name: "blog"
 				}
 			]
 		};
 	}
 
 	componentDidMount(){		
-		for(const i of this.state.cards){
-			document.querySelector(`#${i.name}`).classList.add(style[i.name]);
-		}
+		requestAnimationFrame(() => {
+			this.screenAnimation();
+		});
+	}
+
+	screenAnimation(){
+		let content = document.querySelector("#content");
+		let overlay = document.querySelector("#overlay");
+
+		content.classList.add(style['content']);
+		overlay.classList.add(style['overlay']);
+
+		content.addEventListener("animationend",
+			(e) => {
+				requestAnimationFrame(() => {
+					for(const i of this.state.cards){
+						document.querySelector(`#${i.name}`).classList.add(style['pop']);
+					}
+				});
+			}, false);
+
+		overlay.addEventListener("animationend",
+			(e) => {							
+				
+			}, false);
 	}
 
 	render() {		
 		return (
-			<div class={style.home}>
-				{
-					this.state.cards.map((i) => 						
-						<div 
-							id={i.name} 
-							class={style.card}></div>
-					)
-				}
+			<div class={style.home}>				
+				<header></header>
+				<section id="content">
+					{
+						this.state.cards.map((i) => 						
+							<div 
+								id={i.name} 
+								class={style.card}></div>
+						)
+					}
+				</section>
+				<section id="overlay"></section>  				
 			</div>
 		);
 	}

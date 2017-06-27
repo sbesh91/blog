@@ -15,15 +15,16 @@ export default class Home extends Component {
 				{
 					name: "github"
 				},
-				{
-					name: "blog"
-				}
+				// {
+				// 	name: "blog"
+				// }
 			]
 		};
 	}
 
 	componentDidMount(){		
-		requestAnimationFrame(() => {
+		document.querySelector("body").classList.add(style["no-overflow"]);
+		requestAnimationFrame(() => {			
 			this.screenAnimation();
 		});
 	}
@@ -41,6 +42,8 @@ export default class Home extends Component {
 					for(const i of this.state.cards){
 						document.querySelector(`#${i.name}`).classList.add(style['pop']);
 					}
+
+					document.querySelector("body").classList.remove(style["no-overflow"]);
 				});
 			}, false);
 
@@ -48,6 +51,14 @@ export default class Home extends Component {
 			(e) => {							
 				
 			}, false);
+	}
+
+	interact(e){
+		if(e.target.id != "blog"){
+			return;
+		}
+
+		//todo fill the screen below the header and scroll the page
 	}
 
 	render() {		
@@ -59,7 +70,8 @@ export default class Home extends Component {
 						this.state.cards.map((i) => 						
 							<div 
 								id={i.name} 
-								class={style.card}></div>
+								class={style.card}
+								onClick={this.interact}></div>
 						)
 					}
 				</section>

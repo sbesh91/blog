@@ -5,12 +5,14 @@ import { Router } from 'preact-router';
 
 import Header from './components/header';
 import Home from './routes/home';
+import Blog from './routes/blog';
 
 export default () => (
 	<div id="app">		
 		<Header />
 		<Router>
-			<Home path="/" />			
+			<Home path="/" />		
+			<Blog path="/blog" />
 		</Router>		
 	</div>
 );

@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import { Link } from 'preact-router/match';
 import style from './style';
 
 export default class Home extends Component {	
@@ -15,9 +16,9 @@ export default class Home extends Component {
 				{
 					name: "github"
 				},
-				// {
-				// 	name: "blog"
-				// }
+				{
+					name: "blog"
+				}
 			]
 		};
 	}
@@ -58,6 +59,7 @@ export default class Home extends Component {
 			return;
 		}
 
+		document.querySelector("#blog_body").classList.add(style['blog']);		
 		//todo fill the screen below the header and scroll the page
 	}
 
@@ -71,11 +73,17 @@ export default class Home extends Component {
 							<div 
 								id={i.name} 
 								class={style.card}
-								onClick={this.interact}></div>
+								onClick={this.interact}>
+									{/*<Link 
+										activeClassName={style.active} 
+										href="/blog"
+										onClick={this.interact}>blog</Link>*/}
+								</div>
 						)
 					}
 				</section>
 				<section id="overlay"></section>  				
+				<section id="blog_body"></section>
 			</div>
 		);
 	}

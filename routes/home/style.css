@@ -122,8 +122,6 @@
 	}
 }
 
-
-
 @media(max-width:768px){
 	.content{
 		display:flex;
@@ -142,4 +140,39 @@
 
 .no-overflow{
   overflow: hidden;
+}
+
+.blog{
+  /*todo revert this to relative positioning*/
+  top:56px;
+  z-index:5;
+  position:absolute;  
+  width: 100%;
+  height: calc(100% - 56px);  
+  opacity:1;
+  background: white;
+  transform-origin:50% 50%;
+  animation: shape 700ms forwards linear; 
+  /**/
+  will-change: clip-path, transform;
+}
+
+@keyframes shape {
+	0% {    		
+    transform: translate(0, 100%);
+		clip-path: circle(10.0% at 50% 50%);    
+	}
+
+  40% {    
+    transform: none;
+    clip-path: circle(10.0% at 50% 50%);    
+    animation-timing-function: ease-out;
+  }
+
+	100% {
+		opacity: 1;
+		transform: none;
+		clip-path: circle(100.0% at 50% 50%);
+    
+	}
 }

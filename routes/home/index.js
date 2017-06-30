@@ -8,16 +8,24 @@ export default class Home extends Component {
 		this.state = {
 			cards: [
 				{
-					name: "twitter"					
+					name: "twitter",
+					href: "https://twitter.com/sbesh91",
+					inPageLink: false
 				},
 				{
-					name: "linkdin"
+					name: "github",
+					href: "https://www.github.com/sbesh91",
+					inPageLink: false
 				},
 				{
-					name: "github"
-				},
+					name: "linkedin",
+					href: "https://www.linkedin.com/in/steven-beshensky-b211127a/",
+					inPageLink: false
+				},				
 				{
-					name: "blog"
+					name: "blog",
+					href: "/blog",
+					inPageLink: true
 				}
 			]
 		};
@@ -54,15 +62,6 @@ export default class Home extends Component {
 			}, false);
 	}
 
-	interact(e){
-		if(e.target.id != "blog"){
-			return;
-		}
-
-		document.querySelector("#blog_body").classList.add(style['blog']);		
-		//todo fill the screen below the header and scroll the page
-	}
-
 	render() {		
 		return (
 			<div class={style.home}>				
@@ -72,18 +71,25 @@ export default class Home extends Component {
 						this.state.cards.map((i) => 						
 							<div 
 								id={i.name} 
-								class={style.card}
+								class={`${style.card}`}
 								onClick={this.interact}>
-									{/*<Link 
-										activeClassName={style.active} 
-										href="/blog"
-										onClick={this.interact}>blog</Link>*/}
-								</div>
+
+								{i.inPageLink &&
+									<Link 
+										class={`${style.link } ${style[i.name]}`}
+										href={i.href}></Link>
+								}
+								{!i.inPageLink &&
+									<a 
+										target="_blank"
+										class={`${style.link } ${style[i.name]}`}
+										href={i.href}></a>
+								}									
+							</div>
 						)
 					}
 				</section>
-				<section id="overlay"></section>  				
-				<section id="blog_body"></section>
+				<section id="overlay"></section>
 			</div>
 		);
 	}

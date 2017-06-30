@@ -6,7 +6,13 @@ export default class Header extends Component {
 	render() {
 		return (
 			<header class={style.header}>
-				<h1>For The Web</h1>
+				<h1>
+					<Link 
+						class={`${style.link}`}
+						href="/">
+						For The Web	
+					</Link>
+				</h1>
 			</header>
 		);
 	}

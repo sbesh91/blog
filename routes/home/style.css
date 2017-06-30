@@ -13,7 +13,7 @@
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
 							0 1px 5px 0 rgba(0, 0, 0, 0.12),
 							0 3px 1px -2px rgba(0, 0, 0, 0.2);
-
+  clip-path: circle(10.0% at 50% 50%);    
   background: linear-gradient(180deg,#FFFFFF 15%,#FFFFFF 70%,#B2EBF2 94%);
 }
 
@@ -98,7 +98,7 @@
 
 .pop{
 	will-change: opacity, clip-path, transform;
-  animation: pop 400ms forwards 100ms;
+  animation: pop 400ms forwards;
 }
 
 @keyframes pop {
@@ -142,37 +142,20 @@
   overflow: hidden;
 }
 
-.blog{
-  /*todo revert this to relative positioning*/
-  top:56px;
-  z-index:5;
-  position:absolute;  
-  width: 100%;
-  height: calc(100% - 56px);  
-  opacity:1;
-  background: white;
-  transform-origin:50% 50%;
-  animation: shape 700ms forwards linear; 
-  /**/
-  will-change: clip-path, transform;
+.link{
+  margin: 20px;
+  height:100%;
+  display: block;
 }
 
-@keyframes shape {
-	0% {    		
-    transform: translate(0, 100%);
-		clip-path: circle(10.0% at 50% 50%);    
-	}
+.twitter{
+  background: url('/assets/icons/twitter.svg') no-repeat;
+}
 
-  40% {    
-    transform: none;
-    clip-path: circle(10.0% at 50% 50%);    
-    animation-timing-function: ease-out;
-  }
+.github{
+  background: url('/assets/icons/github.svg') no-repeat;
+}
 
-	100% {
-		opacity: 1;
-		transform: none;
-		clip-path: circle(100.0% at 50% 50%);
-    
-	}
+.linkedin{
+  background: url('/assets/icons/linkedin.svg') no-repeat;
 }

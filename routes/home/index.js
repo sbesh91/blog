@@ -40,26 +40,14 @@ export default class Home extends Component {
 
 	screenAnimation(){
 		let content = document.querySelector("#content");
-		let overlay = document.querySelector("#overlay");
 
-		content.classList.add(style['content']);
-		overlay.classList.add(style['overlay']);
+		content.classList.add(style['content']);		
 
-		content.addEventListener("animationend",
-			(e) => {
-				requestAnimationFrame(() => {
-					for(const i of this.state.cards){
-						document.querySelector(`#${i.name}`).classList.add(style['pop']);
-					}
+		for(const i of this.state.cards){
+			document.querySelector(`#${i.name}`).classList.add(style['pop']);
+		}
 
-					document.querySelector("body").classList.remove(style["no-overflow"]);
-				});
-			}, false);
-
-		overlay.addEventListener("animationend",
-			(e) => {							
-				
-			}, false);
+		document.querySelector("body").classList.remove(style["no-overflow"]);
 	}
 
 	render() {		
@@ -89,7 +77,6 @@ export default class Home extends Component {
 						)
 					}
 				</section>
-				<section id="overlay"></section>
 			</div>
 		);
 	}

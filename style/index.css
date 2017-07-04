@@ -10,12 +10,9 @@ html, body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overflow-x: hidden;
+	background: linear-gradient(160deg,#03A9F4 15%,#18FFFF 70%,#84FFFF 94%);
 }
 
 * {
 	box-sizing: border-box;
-}
-
-#app {
-	height: 100%;
 }

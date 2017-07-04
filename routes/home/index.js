@@ -31,30 +31,10 @@ export default class Home extends Component {
 		};
 	}
 
-	componentDidMount(){		
-		document.querySelector("body").classList.add(style["no-overflow"]);
-		requestAnimationFrame(() => {			
-			this.screenAnimation();
-		});
-	}
-
-	screenAnimation(){
-		let content = document.querySelector("#content");
-
-		content.classList.add(style['content']);		
-
-		for(const i of this.state.cards){
-			document.querySelector(`#${i.name}`).classList.add(style['pop']);
-		}
-
-		document.querySelector("body").classList.remove(style["no-overflow"]);
-	}
-
 	render() {		
 		return (
-			<div class={style.home}>				
-				<header></header>
-				<section id="content">
+			<div class={style.home}>
+				<section id="content" class={style.content}>
 					{
 						this.state.cards.map((i) => 						
 							<div 

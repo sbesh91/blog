@@ -13,6 +13,7 @@ export default () => (
 		<Router>
 			<Home path="/" />		
 			<Blog path="/blog" />
+			<Blog path="/blog/:id" />
 		</Router>		
 	</div>
 );

@@ -2,6 +2,7 @@
 	display: flex;
   flex-direction: column;
   height: 100%;
+  padding-top:56px;      
 }
 
 .card{	
@@ -14,10 +15,6 @@
 							0 1px 5px 0 rgba(0, 0, 0, 0.12),
 							0 3px 1px -2px rgba(0, 0, 0, 0.2);
   background: linear-gradient(180deg,#FFFFFF 15%,#FFFFFF 70%,#B2EBF2 94%);
-}
-
-.content{
-  padding-top:56px;      
 }
 
 @media(max-width:768px){

@@ -10,7 +10,7 @@ export default class Header extends Component {
 					<Link 
 						class={`${style.link}`}
 						href="/">
-						For The Web	
+						Steven Beshensky
 					</Link>
 				</h1>
 			</header>

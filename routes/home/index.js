@@ -4,7 +4,7 @@ import style from './style';
 
 export default class Home extends Component {	
 	
-	componentWillMount(){
+	componentWillMount() {
 		this.state = {
 			cards: [
 				{
@@ -22,11 +22,11 @@ export default class Home extends Component {
 					href: "https://www.linkedin.com/in/steven-beshensky-b211127a/",
 					inPageLink: false
 				},				
-				{
-					name: "blog",
-					href: "/blog",
-					inPageLink: true
-				}
+				// {
+				// 	name: "blog",
+				// 	href: "/blog",
+				// 	inPageLink: true
+				// }
 			]
 		};
 	}
@@ -35,8 +35,7 @@ export default class Home extends Component {
 		return (
 			<div class={style.home}>
 				<section id="content" class={style.content}>
-					{
-						this.state.cards.map((i) => 						
+					{this.state.cards.map((i) => 						
 							<div 
 								id={i.name} 
 								class={`${style.card}`}
@@ -47,8 +46,10 @@ export default class Home extends Component {
 										class={`${style.link } ${style[i.name]}`}
 										href={i.href}></Link>
 								}
+								
 								{!i.inPageLink &&
-									<a 
+									<a
+										rel="noopener"
 										target="_blank"
 										class={`${style.link } ${style[i.name]}`}
 										href={i.href}></a>

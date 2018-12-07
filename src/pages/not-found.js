@@ -1,7 +1,7 @@
 import { LitElement, html } from '@polymer/lit-element/lit-element';
 
 // Create your custom component
-class AboutPage extends LitElement {
+class NotFound extends LitElement {
   // Initialize properties
   constructor() {
     super();
@@ -9,8 +9,8 @@ class AboutPage extends LitElement {
 
   // Define a template
   render() {
-    return html`<p>about page</p>`;
+    return html`<p>not found page</p>`;
   }
 }
 // Register the element with the browser
-customElements.define('about-page', AboutPage);
+customElements.define('not-found', NotFound);

@@ -1,37 +1,41 @@
+import 'web-animations-js/web-animations-next.min.js';
 import { LitElement, html } from '@polymer/lit-element/lit-element';
 import { installRouter } from 'pwa-helpers/router';
-import { routes, navigate} from './app';
+import { routes, navigate, generatePageTransitionAnimation, generateBaseLoadAnimation} from './app';
+
 // Create your custom component
 class AppShell extends LitElement {
   // Initialize properties
+
   constructor() {
     super();
     
     installRouter((location) => this.viewChange(location));
+    this.currentLocation = location.pathname;
   }
 
-  viewChange() { 
-    // const view = this.shadowRoot.querySelector(`home-page`); // before
+  async viewChange(location) {
+    if (!this.currentLocation) {
+      await navigate(window.decodeURIComponent(location.pathname));
+      const firstView = this.shadowRoot.querySelector(routes[location.pathname].selector);
+      const firstAnim = generateBaseLoadAnimation(firstView, 'forwards');
+      firstAnim.play();
+      firstView.classList.add('active');
+      return;
+    }
 
-    // const duration = 250;
-    // const baseFrame = { 'transform': 'none', 'opacity': 1 };
-    // const modFrame = { 'transform': 'translate(0px,-50px)', 'opacity': 0 };
-    // const animationTimingConfig = {
-    //   fill: 'forwards',
-    //   easing: "cubic-bezier(0.4, 0.0, 0.2, 1)",
-    //   duration: duration
-    // };
+    const oldView = this.shadowRoot.querySelector(routes[this.currentLocation].selector);
+    const outAnim = generatePageTransitionAnimation(oldView, 'backwards');
+    outAnim.play();
+    oldView.classList.remove('active');
 
-    // let effect = new KeyframeEffect(view, [baseFrame, modFrame], animationTimingConfig);
-    // let inAnim = new Animation(effect, document.timeline);
-
-    // if (view) {
-    //   console.log('start');
-    //   inAnim.play();
-    //   console.log('end');
-    // }
+    await navigate(window.decodeURIComponent(location.pathname));
+    this.currentLocation = location.pathname;
     
-    return navigate(window.decodeURIComponent(location.pathname));
+    const newView = this.shadowRoot.querySelector(routes[location.pathname].selector);
+    const inAnim = generatePageTransitionAnimation(newView, 'forwards');
+    inAnim.play();
+    newView.classList.add('active')
   }
 
   renderLink(route) {
@@ -46,10 +50,33 @@ class AppShell extends LitElement {
     <style>
       :host {
         display: grid;
+        grid-template-rows: 2rem 1fr;
+        height: 100%;
+      }
+
+      a {
+        cursor: pointer;
+      }
+
+      main {
+        position: relative;
+      }
+
+      main > * {
+        display: block;
+        position: absolute;
+        pointer-events: none;
+        opacity: 0;
+        top: 0;
+        left: 0;
+      }
+
+      .active {
+        pointer-events: auto;
       }
     </style>
     <nav>
-      ${routes.map(i => this.renderLink(i))}
+      ${Object.keys(routes).map(i => this.renderLink(routes[i]))}
     </nav>
     <main>
       <home-page></home-page>

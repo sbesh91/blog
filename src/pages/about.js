@@ -9,7 +9,24 @@ class AboutPage extends LitElement {
 
   // Define a template
   render() {
-    return html`<p>about page</p>`;
+    return html`
+    <style>
+      :host {
+        width: 100%;
+      }
+      div {
+        height: 5rem;
+        width: 10rem;
+        background: black;
+        position: absolute;
+        right: 1rem;
+        top: 4rem;
+      }
+    </style>
+    <div></div>
+    <p>
+      about page
+    </p>`;
   }
 }
 // Register the element with the browser

@@ -1,7 +1,8 @@
-import 'web-animations-js/web-animations-next.min.js';
+// review the api to try to not need this
+// import 'web-animations-js/web-animations-next.min.js';
 import { LitElement, html } from '@polymer/lit-element/lit-element';
 import { installRouter } from 'pwa-helpers/router';
-import { routes, navigate, generatePageTransitionAnimation, generateBaseLoadAnimation} from './app';
+import { routes, navigate, generatePageTransitionAnimation, generateHeroTransitionAnimation, generateBaseLoadAnimation} from './app';
 
 // Create your custom component
 class AppShell extends LitElement {
@@ -10,31 +11,31 @@ class AppShell extends LitElement {
   constructor() {
     super();
     
-    installRouter((location) => this.viewChange(location));
+    installRouter((location, event) => this.viewChange(location, event));
     this.currentLocation = location.pathname;
   }
 
-  async viewChange(location) {
+  async viewChange(location, event) {
     if (!this.currentLocation) {
       await navigate(window.decodeURIComponent(location.pathname));
       const firstView = this.shadowRoot.querySelector(routes[location.pathname].selector);
-      const firstAnim = generateBaseLoadAnimation(firstView, 'forwards');
-      firstAnim.play();
+      generateBaseLoadAnimation(firstView, 'forwards');
       firstView.classList.add('active');
       return;
     }
-
+    
     const oldView = this.shadowRoot.querySelector(routes[this.currentLocation].selector);
-    const outAnim = generatePageTransitionAnimation(oldView, 'backwards');
-    outAnim.play();
-    oldView.classList.remove('active');
-
+    const fromNode = oldView.shadowRoot.querySelector('div');
+    // generatePageTransitionAnimation(oldView, 'backwards');
+    // toss up a spinner
     await navigate(window.decodeURIComponent(location.pathname));
+    oldView.classList.remove('active');
     this.currentLocation = location.pathname;
     
     const newView = this.shadowRoot.querySelector(routes[location.pathname].selector);
-    const inAnim = generatePageTransitionAnimation(newView, 'forwards');
-    inAnim.play();
+    const toNode = newView.shadowRoot.querySelector('div');
+    generateHeroTransitionAnimation(toNode, fromNode, newView, oldView);
+    // generatePageTransitionAnimation(newView, 'forwards');
     newView.classList.add('active')
   }
 
@@ -73,6 +74,7 @@ class AppShell extends LitElement {
 
       .active {
         pointer-events: auto;
+        opacity: 1;
       }
     </style>
     <nav>

@@ -9,7 +9,24 @@ class HomePage extends LitElement {
 
   // Define a template
   render() {
-    return html`<p>home page</p>`;
+    return html`
+    <style>
+      :host {
+        width: 100%;
+      }
+      div {
+        height: 2rem;
+        width: 2rem;
+        background: black;
+        position: absolute;
+        left: 3rem;
+        top: 10rem;
+      }
+    </style>
+    <div></div>
+    <p>
+      home page
+    </p>`;
   }
 }
 // Register the element with the browser
